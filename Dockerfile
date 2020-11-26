@@ -4,6 +4,7 @@ COPY package.json .
 RUN npm install
 COPY ./ ./
 RUN npm run build
+ENV CHOKIDAR_USEPOLLING=true
 
 FROM nginx
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
